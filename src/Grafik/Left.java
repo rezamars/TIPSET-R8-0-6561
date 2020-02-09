@@ -55,6 +55,7 @@ public class Left extends VBox{
     private Image MGimage2;
     private String MGimage2Path = "MG-klickad.jpg";
     
+    
     private HBox spaceHbox = new HBox();
     private HBox[] hboxNumMGArray = new HBox[13];
     private HBox[] hbox1X2Array = new HBox[13];
