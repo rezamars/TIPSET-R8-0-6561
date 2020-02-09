@@ -49,6 +49,7 @@ public class Left extends VBox{
     private Label[] MGArray = new Label[13];
     private ImageView[] imageViewArray = new ImageView[13];
     private Label[] label1X2Array = new Label[39];
+    private Label[] arrayLabel1X2 = new Label[13];
     
     private Image MGimage1;
     private String MGimage1Path = "MG-ej-klickad.jpg";
@@ -60,6 +61,7 @@ public class Left extends VBox{
     private HBox[] hbox1X2Array = new HBox[13];
     private HBox[] hboxLabelArray = new HBox[13];
     private boolean labelFlag = false;
+    
     
     
     public Left(){
@@ -177,6 +179,7 @@ public class Left extends VBox{
         
         int numberControl = 0;
         
+        /*
         for(int q = 0 ; q < label1X2Array.length ; q++){
             label1X2Array[q] = new Label();
             BackgroundFill background_fill = new BackgroundFill(Color.LIGHTGREEN,  CornerRadii.EMPTY, Insets.EMPTY); 
@@ -195,6 +198,16 @@ public class Left extends VBox{
                 numberControl = 0;
             }
             
+        }
+        */
+        
+        for(int q = 0 ; q < arrayLabel1X2.length ; q++){
+            arrayLabel1X2[q] = new Label();
+            BackgroundFill background_fill = new BackgroundFill(Color.LIGHTGREEN,  CornerRadii.EMPTY, Insets.EMPTY); 
+            Background background = new Background(background_fill);
+            arrayLabel1X2[q].setBackground(background);
+            arrayLabel1X2[q].setText("  1 X 2 ");
+            arrayLabel1X2[q].setFont(labelFont);
         }
         
         /*
@@ -245,7 +258,7 @@ public class Left extends VBox{
         //this.getChildren().add(hboxNumMGArray[4]);
         
         
-        int totalLabels = (rowNumberlabelArray.length + MGArray.length + label1X2Array.length);
+        int totalLabels = (rowNumberlabelArray.length + MGArray.length + arrayLabel1X2.length);
         int squareNumber = 0; 
         int hboxIndex = 0;
         int array1X2Number = 0;
@@ -260,10 +273,12 @@ public class Left extends VBox{
                 squareNumber++;
             }
             else if (squareNumber == 2){
-                hboxLabelArray[hboxIndex].getChildren().add(label1X2Array[array1X2Number]);
+                hboxLabelArray[hboxIndex].getChildren().add(arrayLabel1X2[array1X2Number]);
                 array1X2Number++;
-                squareNumber++;
+                hboxIndex++;
+                squareNumber = 0;
             }
+            /*
             else if (squareNumber == 3){
                 hboxLabelArray[hboxIndex].getChildren().add(label1X2Array[array1X2Number]);
                 array1X2Number++;
@@ -275,7 +290,7 @@ public class Left extends VBox{
                 hboxIndex++;
                 squareNumber = 0;
             }
-            
+            */
         }
         
         /*
