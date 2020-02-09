@@ -278,11 +278,9 @@ public class Left extends VBox{
             
         }
         
-        /*
         for (int i = 0 ; i < hboxLabelArray.length ; i++){
-            this.getChildren().add(hboxLabelArray[i]);
+            //this.getChildren().add(hboxLabelArray[i]);
         }
-        */
         
         this.getChildren().addAll(hboxLabelArray);
         
