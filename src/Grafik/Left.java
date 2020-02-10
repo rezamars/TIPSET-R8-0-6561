@@ -6,6 +6,7 @@
 package Grafik;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.geometry.Insets;
@@ -319,9 +320,15 @@ public class Left extends VBox{
         
     }
     
+    public Label[] getMGArray(){
+        return MGArray;
+    }
+    
     /*
-    public void addMGLabelListener(ActionEvent  listenForLabelClick){
-	        
+    public void addMGLabelListener(EventHandler  listenForLabelClick){
+	  
+        
+        
         for(int x = 0 ; x<MGArray.length ; x++){
 	        //MGArray[x].addEventHandler(EventType.ROOT);
                 MGArray[x].setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -334,7 +341,24 @@ public class Left extends VBox{
                 }) ;
                 
         }
-	       
+        
+    }       
+    */
+    
+    /*
+    public void addMGLabelListener(Label[] MGArray){
+	  
+        for(int x = 0 ; x<MGArray.length ; x++){
+                MGArray[x].setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+                    
+                        
+                }) ;
+                
+        }
     }
     */
     

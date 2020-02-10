@@ -9,13 +9,16 @@ import Grafik.Left;
 import Grafik.Top;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.MGListener;
 
 /**
  *
@@ -26,7 +29,8 @@ public class Controller extends Application {
     
     private Top top = new Top();
     private Left left = new Left();
-    
+    private Label[] MGArray ;
+    private MGListener MGlistener;
     
     @Override
     public void start(Stage primaryStage) {
@@ -41,6 +45,10 @@ public class Controller extends Application {
         primaryStage.setWidth((primaryScreenBounds.getWidth())/1.5);
         primaryStage.setHeight((primaryScreenBounds.getHeight())/1.5);
         
+        this.MGArray = left.getMGArray();
+        
+        MGlistener = new MGListener(MGArray);
+        MGlistener.addMGLabelListener();
         
         View v = new View(primaryStage, top, left);
         
