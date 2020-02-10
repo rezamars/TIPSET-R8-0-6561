@@ -47,7 +47,7 @@ public class Controller extends Application {
         
         this.MGArray = left.getMGArray();
         
-        MGlistener = new MGListener(MGArray);
+        MGlistener = new MGListener(MGArray, left);
         MGlistener.addMGLabelListener();
         
         View v = new View(primaryStage, top, left);

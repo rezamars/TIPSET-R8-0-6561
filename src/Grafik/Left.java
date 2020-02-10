@@ -56,6 +56,8 @@ public class Left extends VBox{
     private String MGimage1Path = "MG-ej-klickad.jpg";
     private Image MGimage2;
     private String MGimage2Path = "MG-klickad.jpg";
+    private ImageView imageView1;
+    private ImageView imageView2;
     
     private HBox spaceHbox = new HBox();
     private HBox[] hboxNumMGArray = new HBox[13];
@@ -139,10 +141,10 @@ public class Left extends VBox{
         }
         
         
-        ImageView imageView1 = new ImageView(MGimage1);
+        imageView1 = new ImageView(MGimage1);
         imageView1.setFitHeight(30);
         imageView1.setFitWidth(30);
-        ImageView imageView2 = new ImageView(MGimage2);
+        imageView2 = new ImageView(MGimage2);
         imageView2.setFitHeight(30);
         imageView2.setFitWidth(30);
         
@@ -324,42 +326,16 @@ public class Left extends VBox{
         return MGArray;
     }
     
-    /*
-    public void addMGLabelListener(EventHandler  listenForLabelClick){
-	  
-        
-        
-        for(int x = 0 ; x<MGArray.length ; x++){
-	        //MGArray[x].addEventHandler(EventType.ROOT);
-                MGArray[x].setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                        public void handle(MouseEvent event) {
-                            throw new UnsupportedOperationException("Exception throwed! Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                            
-                        }
-                        
-                }) ;
-                
-        }
-        
-    }       
-    */
-    
-    /*
-    public void addMGLabelListener(Label[] MGArray){
-	  
-        for(int x = 0 ; x<MGArray.length ; x++){
-                MGArray[x].setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                    }
-                    
-                        
-                }) ;
-                
-        }
+    public ImageView[] getImageViewArray(){
+        return imageViewArray;
     }
-    */
+    
+    public ImageView getImageView1(){
+        return imageView1;
+    }
+    
+    public ImageView getImageView2(){
+        return imageView2;
+    }
     
 }
