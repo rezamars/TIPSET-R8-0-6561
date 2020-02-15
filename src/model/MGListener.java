@@ -6,30 +6,18 @@
 package model;
 
 import Grafik.Left;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.application.Application;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import tipset.Controller;
 
 /**
  *
  * @author Reza
  */
-public class MGListener implements ActionListener   {
+public class MGListener    {
 
     private Label[] MGArray ;
     private  int index = 0;
-    private final String[] stringArray = new String[13];
     private Left left;
     private ImageView[] imageViewArray;
     private int MGIndex = -1;
@@ -59,44 +47,17 @@ public class MGListener implements ActionListener   {
         this.imageView2 = left.getImageView2();
         this.imageViewArray = left.getImageViewArray();
         
-        /*
-        for (int i = 0 ; i < MGchosenIndexes.length ; i++){
-            MGchosenIndexes[i] = -1;
-        }
-        */
-        
         loadLabelImage();
         
     }
     
     
-    /*
-    public void addMGLabelListener(){
-	        
-        for(int x = 0 ; x<MGArray.length ; x++){
-	        //MGArray[x].addEventHandler(EventType.ROOT);
-                MGArray[x].setOnMouseClicked(new EventHandler<MouseEvent>() {
-                    @Override
-                        public void handle(MouseEvent event) {
-                            System.out.println("Klick!");
-                            throw new UnsupportedOperationException("Exception throwed! Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                            
-                        }
-                        
-                }) ;
-                
-        }
-	       
-    }
-    */
     
     public void addMGLabelListener(){
 	        
         for(int x = 0 ; x<MGArray.length ; x++){
                 
 	        MGArray[x].setOnMouseClicked(event -> {
-                    //System.out.println(event.getSource());
-                    //stringArray[x] = event.getSource().toString();
                     
                     if(event.getSource()== MGArray[0]){
                         MGIndex = 0;
@@ -143,7 +104,6 @@ public class MGListener implements ActionListener   {
                     
                     MGLabelFlagSetter();
                     updateLabelImage();
-                    //System.out.println("MGArray!: " + MGIndex );
                     
                 });
         }
@@ -179,9 +139,6 @@ public class MGListener implements ActionListener   {
     
     public void updateLabelImage(){
         
-       
-        
-        
         
         if (mgFlagArray[MGIndex] == false){
                 
@@ -198,13 +155,7 @@ public class MGListener implements ActionListener   {
                 
             imageViewArray[MGIndex].setImage(MGimage1);
             MGArray[MGIndex].setGraphic(imageViewArray[MGIndex]);
-                /*
-                for (int x = 0 ; x < MGchosenIndexes.length ; x++){
-                    if (MGchosenIndexes[x] == MGIndex){
-                        MGchosenIndexes[x] = -1;
-                    }
-                }
-                */
+                
             if (numberOfMGs > 0){
                 numberOfMGs--;
             }
@@ -215,23 +166,10 @@ public class MGListener implements ActionListener   {
                 
             imageViewArray[MGIndex].setImage(MGimage2);
             MGArray[MGIndex].setGraphic(imageViewArray[MGIndex]);
-            //MGchosenIndexes[numberOfMGs] = MGIndex;
             numberOfMGs++;
         }
             
-        
-        
-        /*for (int x = 0 ; x < MGchosenIndexes.length ; x++){
-            for (int q = 0 ; q < mgFlagArray.length ; q++){
-                if (mgFlagArray[q] == true){
-                    MGchosenIndexes[x] = q;
-                }
-                else {
-                    
-                }
-            }
-        }*/
-              
+            
         if (numberOfMGs > 4){
             System.out.println("5+++++ " );
             for (int y = 0; y < MGArray.length ; y++){
@@ -263,15 +201,9 @@ public class MGListener implements ActionListener   {
         
         System.out.println("Selected Indexes: " + chosenMGIndexes[0] + "," + chosenMGIndexes[1] + "," + chosenMGIndexes[2] + 
                 "," + chosenMGIndexes[3] + "," + chosenMGIndexes[4]);
-    }
-
-    
-    @Override
-    public void actionPerformed(ActionEvent ae) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        System.out.println("ae");
         
     }
+
     
     
 }

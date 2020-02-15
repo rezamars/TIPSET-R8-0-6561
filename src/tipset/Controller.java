@@ -5,20 +5,17 @@
  */
 package tipset;
 
+import Grafik.Center;
 import Grafik.Left;
+import Grafik.Right;
 import Grafik.Top;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.MGListener;
+import model.ResultRowListener;
 
 /**
  *
@@ -29,13 +26,15 @@ public class Controller extends Application {
     
     private Top top = new Top();
     private Left left = new Left();
+    private Center center = new Center();
+    private Right right = new Right();
     private Label[] MGArray ;
     private MGListener MGlistener;
+    private Label[] result1X2Array;
+    private ResultRowListener resultListener;
     
     @Override
     public void start(Stage primaryStage) {
-        
-        //left.addMGLabelListener(new Listener());
         
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         
@@ -46,11 +45,15 @@ public class Controller extends Application {
         primaryStage.setHeight((primaryScreenBounds.getHeight())/1.5);
         
         this.MGArray = left.getMGArray();
+        this.result1X2Array = center.getResultArray();
         
         MGlistener = new MGListener(MGArray, left);
         MGlistener.addMGLabelListener();
         
-        View v = new View(primaryStage, top, left);
+        resultListener = new ResultRowListener(result1X2Array, center);
+        resultListener.addResultLabelListener();
+        
+        View v = new View(primaryStage, top, left, center, right);
         
     }
 

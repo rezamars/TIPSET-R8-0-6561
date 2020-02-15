@@ -5,27 +5,12 @@
  */
 package tipset;
 
+import Grafik.Center;
 import Grafik.Left;
+import Grafik.Right;
 import Grafik.Top;
-import java.io.FileNotFoundException;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToolBar;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -38,14 +23,20 @@ public class View {
     
     private Top top;
     private Left left;
+    private Center center;
+    private Right right;
     
-    public View(Stage primaryStage, Top top1, Left left1){
+    public View(Stage primaryStage, Top top1, Left left1, Center center1, Right right1){
         
         this.top = top1;
         this.left= left1;
+        this.center = center1;
+        this.right = right1;
         
         borderPane.setTop(top);
         borderPane.setLeft(left);
+        borderPane.setCenter(center);
+        borderPane.setRight(right);
         
         Scene scene = new Scene(borderPane, 300, 250);
         
