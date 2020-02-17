@@ -33,6 +33,7 @@ public class MGListener    {
     private int numberOfMGs = 0;
     private int[] chosenMGIndexes = new int[5];
     
+    private boolean flagOf5MGs;
     
     public MGListener(Label[] MGA, Left left){
         
@@ -46,6 +47,7 @@ public class MGListener    {
         this.imageView1 = left.getImageView1();
         this.imageView2 = left.getImageView2();
         this.imageViewArray = left.getImageViewArray();
+        this.flagOf5MGs = left.get5MGsFlag();
         
         loadLabelImage();
         
@@ -187,20 +189,26 @@ public class MGListener    {
         
         if (numberOfMGs == 5){
             for (int y = 0; y < mgFlagArray.length ; y++){
-            if (mgFlagArray[y] == true){
-                chosenMGIndexes[iter] = y;
-                iter++;
+                if (mgFlagArray[y] == true){
+                    chosenMGIndexes[iter] = y;
+                    iter++;
+                }
             }
+            flagOf5MGs = true;
+            //System.out.println("flag of 5MGs: " + numberOfMGs);
         }
+        else{
+            flagOf5MGs = false;
+            //System.out.println("number of MGs: " + numberOfMGs);
         }
         
         
         
         
-        System.out.println("number of MGs: " + numberOfMGs);
+        //System.out.println("number of MGs: " + numberOfMGs);
         
-        System.out.println("Selected Indexes: " + chosenMGIndexes[0] + "," + chosenMGIndexes[1] + "," + chosenMGIndexes[2] + 
-                "," + chosenMGIndexes[3] + "," + chosenMGIndexes[4]);
+        //System.out.println("Selected Indexes: " + chosenMGIndexes[0] + "," + chosenMGIndexes[1] + "," + chosenMGIndexes[2] + 
+          //      "," + chosenMGIndexes[3] + "," + chosenMGIndexes[4]);
         
     }
 

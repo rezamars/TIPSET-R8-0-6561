@@ -15,6 +15,7 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>Tipset-R8-0-6561</name>
             <source-roots>
+                <root id="src.Files.dir"/>
                 <root id="src.pictures.dir"/>
                 <root id="src.dir"/>
             </source-roots>

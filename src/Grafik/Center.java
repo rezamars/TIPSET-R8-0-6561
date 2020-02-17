@@ -37,9 +37,10 @@ public class Center extends VBox{
     private Image imageBlank;
     private String imageBlankPath = "blank.jpg";
     
-    
+    private boolean result13Flag = false;
     private ImageView[] imageViewArray = new ImageView[39];
     
+    private String[] result13Array = new String[13];
     
     public Center(){
         
@@ -110,6 +111,10 @@ public class Center extends VBox{
             
         }
         
+        for(int p = 0 ; p < result13Array.length ; p++){
+            result13Array[p] = "";
+        }
+        
         int totalLabels = (rowNumberlabelArray.length +  result1X2Array.length);
         int squareNumber = 0; 
         int hboxIndex = 0;
@@ -168,8 +173,16 @@ public class Center extends VBox{
         return this.result1X2Array;
     }
     
+    public String[] getResult13Array(){
+        return result13Array;
+    }
+    
     public ImageView[] getImageViewArray(){
         return imageViewArray;
+    }
+    
+    public boolean getResult13FClag(){
+        return result13Flag;
     }
     
 }

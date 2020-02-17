@@ -42,7 +42,7 @@ public class Left extends VBox{
     //private HBox[] hboxNumMGArray = new HBox[13];
     //private HBox[] hbox1X2Array = new HBox[13];
     private HBox[] hboxLabelArray = new HBox[13];
-    
+    private boolean flagOf5MGs = false;
     
     
     public Left(){
@@ -182,6 +182,10 @@ public class Left extends VBox{
     
     public ImageView[] getImageViewArray(){
         return imageViewArray;
+    }
+    
+    public boolean get5MGsFlag(){
+        return flagOf5MGs;
     }
     
     public ImageView getImageView1(){

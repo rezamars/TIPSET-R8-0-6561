@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import model.MGListener;
+import model.ReadFile;
 import model.ResultRowListener;
 
 /**
@@ -32,6 +33,8 @@ public class Controller extends Application {
     private MGListener MGlistener;
     private Label[] result1X2Array;
     private ResultRowListener resultListener;
+    
+    
     
     @Override
     public void start(Stage primaryStage) {
@@ -54,6 +57,8 @@ public class Controller extends Application {
         resultListener.addResultLabelListener();
         
         View v = new View(primaryStage, top, left, center, right);
+        
+        
         
     }
 
