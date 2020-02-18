@@ -7,6 +7,7 @@ package Grafik;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,6 +20,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Screen;
 
 /**
  *
@@ -53,6 +55,7 @@ public class Center extends VBox{
         headingFont = Font.font("Arial", FontWeight.BOLD, 20);
         headingLabel.setFont(headingFont);
         headingLabel.setTextFill(Color.RED);
+        headingLabel.setAlignment(Pos.TOP_CENTER);
         this.getChildren().add(headingLabel);
         
         loadLabelImages();
@@ -60,6 +63,8 @@ public class Center extends VBox{
         spaceHbox = new HBox();
         spaceHbox.setPadding(new Insets(10, 10, 10, 100));
         this.getChildren().add(spaceHbox);
+        
+        
         
         
         for(int z = 0 ; z < hboxLabelArray.length ; z++){
@@ -71,6 +76,9 @@ public class Center extends VBox{
 
         }
         
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        double width = primaryScreenBounds.getWidth();
+        double height = primaryScreenBounds.getHeight();
         
         Font labelFont ;
         labelFont = Font.font("Arial", FontWeight.BOLD, 20);
@@ -93,7 +101,7 @@ public class Center extends VBox{
             rowNumberlabelArray[x].setStyle("-fx-border-color: yellow;");
         }
         
-        int columnNumber = 0;
+        
         
         for(int w = 0 ; w < imageViewArray.length ; w++){
             
@@ -102,8 +110,8 @@ public class Center extends VBox{
             
             imageViewArray[w] = new ImageView(imageBlank);
             
-            imageViewArray[w].setFitHeight(30);
-            imageViewArray[w].setFitWidth(30);
+            imageViewArray[w].setFitHeight(height/25);
+            imageViewArray[w].setFitWidth(width/55);
             result1X2Array[w] = new Label();
             //result1X2Array[w].setStyle("-fx-border-color: yellow;");
             result1X2Array[w].setGraphic(imageViewArray[w]);
@@ -181,7 +189,7 @@ public class Center extends VBox{
         return imageViewArray;
     }
     
-    public boolean getResult13FClag(){
+    public boolean getResult13Flag(){
         return result13Flag;
     }
     

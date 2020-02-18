@@ -5,10 +5,13 @@
  */
 package model;
 
+import Grafik.Center;
 import Grafik.Left;
+import Grafik.Right;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import tipset.Controller;
 
 /**
  *
@@ -19,6 +22,8 @@ public class MGListener    {
     private Label[] MGArray ;
     private  int index = 0;
     private Left left;
+    private Center center;
+    private Right right;
     private ImageView[] imageViewArray;
     private int MGIndex = -1;
     private boolean[] mgFlagArray = new boolean[13];
@@ -31,23 +36,30 @@ public class MGListener    {
     private ImageView imageView2;
     
     private int numberOfMGs = 0;
-    private int[] chosenMGIndexes = new int[5];
+    private int[] chosenMGIndexes;
     
     private boolean flagOf5MGs;
+    private boolean result13Flag;
     
-    public MGListener(Label[] MGA, Left left){
+    
+    public MGListener(Label[] MGA, Left left1, Center center1, Right right1){
         
         for (int a = 0 ; a < mgFlagArray.length ; a++){
             mgFlagArray[a] = false;
         }
         
         this.MGArray = MGA;
-        this.left = left;
-        this.imageViewArray = left.getImageViewArray();
-        this.imageView1 = left.getImageView1();
-        this.imageView2 = left.getImageView2();
-        this.imageViewArray = left.getImageViewArray();
-        this.flagOf5MGs = left.get5MGsFlag();
+        this.left = left1;
+        this.center = center1;
+        this.right = right1;
+        this.imageViewArray = left1.getImageViewArray();
+        this.imageView1 = left1.getImageView1();
+        this.imageView2 = left1.getImageView2();
+        this.imageViewArray = left1.getImageViewArray();
+        this.flagOf5MGs = left1.get5MGsFlag();
+        this.chosenMGIndexes = left1.getChosenMGIndexes();
+        this.result13Flag = center.getResult13Flag();
+        
         
         loadLabelImage();
         
@@ -61,51 +73,18 @@ public class MGListener    {
                 
 	        MGArray[x].setOnMouseClicked(event -> {
                     
-                    if(event.getSource()== MGArray[0]){
-                        MGIndex = 0;
-                    }
-                    else if(event.getSource()== MGArray[1]){
-                        MGIndex = 1;
-                    }
-                    else if(event.getSource()== MGArray[2]){
-                        MGIndex = 2;
-                    }
-                    else if(event.getSource()== MGArray[3]){
-                        MGIndex = 3;
-                    }
-                    else if(event.getSource()== MGArray[4]){
-                        MGIndex = 4;
-                    }
-                    else if(event.getSource()== MGArray[5]){
-                        MGIndex = 5;
-                    }
-                    else if(event.getSource()== MGArray[6]){
-                        MGIndex = 6;
-                    }
-                    else if(event.getSource()== MGArray[7]){
-                        MGIndex = 7;
-                    }
-                    else if(event.getSource()== MGArray[8]){
-                        MGIndex = 8;
-                    }
-                    else if(event.getSource()== MGArray[9]){
-                        MGIndex = 9;
-                    }
-                    else if(event.getSource()== MGArray[10]){
-                        MGIndex = 10;
-                    }
-                    else if(event.getSource()== MGArray[11]){
-                        MGIndex = 11;
-                    }
-                    else if(event.getSource()== MGArray[12]){
-                        MGIndex = 12;
-                    }
-                    else{
-                        System.exit(0);
-                    }
+                    for (int index = 0 ; index < MGArray.length ; index++){
+                        if(event.getSource()== MGArray[index]){
+                        MGIndex = index;
+                        }
+                        else{
+                            //System.exit(0);
+                        }
+                   }
                     
                     MGLabelFlagSetter();
                     updateLabelImage();
+                    updateEnableCountCButton();
                     
                 });
         }
@@ -130,11 +109,11 @@ public class MGListener    {
         
         if (mgFlagArray[MGIndex] == false){
             mgFlagArray[MGIndex] = true;
-                System.out.println("MGArray!: " + MGIndex + ", now true!");
+                //System.out.println("MGArray!: " + MGIndex + ", now true!");
             }
         else if(mgFlagArray[MGIndex] == true){
             mgFlagArray[MGIndex] = false;
-            System.out.println("MGArray!: " + MGIndex + ", now false");
+            //System.out.println("MGArray!: " + MGIndex + ", now false");
         }
         
     }
@@ -196,22 +175,31 @@ public class MGListener    {
             }
             flagOf5MGs = true;
             //System.out.println("flag of 5MGs: " + numberOfMGs);
+            /*
+            for(int x = 0 ; x < chosenMGIndexes.length ; x++){
+                System.out.println("chosen index = " + chosenMGIndexes[x]);
+            }
+            */
+            //updateEnableCountCButton();
         }
         else{
             flagOf5MGs = false;
             //System.out.println("number of MGs: " + numberOfMGs);
         }
         
-        
-        
-        
-        //System.out.println("number of MGs: " + numberOfMGs);
-        
-        //System.out.println("Selected Indexes: " + chosenMGIndexes[0] + "," + chosenMGIndexes[1] + "," + chosenMGIndexes[2] + 
-          //      "," + chosenMGIndexes[3] + "," + chosenMGIndexes[4]);
-        
     }
 
-    
+    public void updateEnableCountCButton(){
+        
+        System.out.println("result13flag= " + Controller.flag13);
+        if ((flagOf5MGs == true) && (Controller.flag13 == true)){
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            right.getCountButton().setDisable(false);
+        }
+        else{
+            right.getCountButton().setDisable(true);
+        }
+        
+    }
     
 }

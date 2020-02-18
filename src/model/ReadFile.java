@@ -42,7 +42,7 @@ public class ReadFile {
         
         try{
 		scanner = new Scanner(file);
-                System.out.println("The file was opened!");
+                System.out.println("Filen öppnades!");
                 
                 while(scanner.hasNext()){
                     
@@ -75,10 +75,10 @@ public class ReadFile {
                     for(int k = 0 ; k < 8 ; k++){
                         if(R8_0_27_Tables[i][k].equalsIgnoreCase("1") || R8_0_27_Tables[i][k].equalsIgnoreCase("X") || 
                                 R8_0_27_Tables[i][k].equalsIgnoreCase("2")){
-                            System.out.println("result, i= " + i + ", k= "+ R8_0_27_Tables[i][k]);
+                            //System.out.println("result, i= " + i + ", k= "+ R8_0_27_Tables[i][k]);
                         }
                         else{
-                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                            //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                         }
                     }
             

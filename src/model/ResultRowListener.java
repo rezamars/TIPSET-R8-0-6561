@@ -9,6 +9,7 @@ import Grafik.Center;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import tipset.Controller;
 
 /**
  *
@@ -43,15 +44,19 @@ public class ResultRowListener {
     
     private String[] result13Array;
     private int rowIndex = -1;
+    private int numberOfResChecked = 0;
+    
+    private MGListener MGListener;
     
     
-    public ResultRowListener(Label[] resultArray, Center center1){
+    public ResultRowListener(Label[] resultArray, Center center1, MGListener MGListener1){
         
         this.result1X2Array = resultArray;
         this.center = center1;
-        this.imageViewArray = center.getImageViewArray();
-        this.result13Flag = center.getResult13FClag();
+        this.imageViewArray = center1.getImageViewArray();
+        this.result13Flag = center1.getResult13Flag();
         this.result13Array = center1.getResult13Array();
+        this.MGListener = MGListener1;
         
         for (int a = 0 ; a < resultFlagArray.length ; a++){
             resultFlagArray[a] = false;
@@ -133,10 +138,12 @@ public class ResultRowListener {
         if (resultFlagArray[resultLabellIndex] == false){
             resultFlagArray[resultLabellIndex] = true;
                 //System.out.println("ResultArray!: " + resultLabellIndex + ", now true!");
+                numberOfResChecked++;
             }
         else if(resultFlagArray[resultLabellIndex] == true){
             resultFlagArray[resultLabellIndex] = false;
             //System.out.println("ResultArray!: " + resultLabellIndex + ", now false");
+            numberOfResChecked--;
         }
         
     }
@@ -168,7 +175,7 @@ public class ResultRowListener {
             result1X2Array[disableIndexes[1]].setDisable(false);
             
             checkedResults--;
-            
+            Controller.flag13 = false;
         }
         else if (resultFlagArray[resultLabellIndex] == true){
             
@@ -201,46 +208,28 @@ public class ResultRowListener {
             
             //System.out.println("Row: " + rowIndex + ", Type: " + strArrayTypeOfImage );
             
-            if(checkedResults >= 13){
+            if(checkedResults == 13){
                 System.out.println("Number of checked: " + checkedResults);
                 result13Flag = true;
+                System.out.println("In rrli,result13flag= " + result13Flag);
                 countRowNumber();
+                Controller.flag13 = true;
             }
             else{
                 result13Flag = false;
+                Controller.flag13 = false;
             }
-           
+            this.MGListener.updateEnableCountCButton();
+            System.out.println("NUmber of checked: " + checkedResults);
         }
             
-        
+        this.MGListener.updateEnableCountCButton();
     }
       
       public void countRowNumber(){
           
           int rowCounter = -1;
           
-          /*
-          for ( int i = 0 ; i < 39 ; i+=3){
-              rowCounter ++;
-              if (strArray[i].equals("1") ){
-                  result13Array[rowCounter] = "1"; 
-              }
-              else if (strArray[i+1].equalsIgnoreCase("X") ){
-                  result13Array[rowCounter] = "X"; 
-              }
-              else if (strArray[i+2].equals("2")){
-                  result13Array[rowCounter] = "2"; 
-              }
-              else if (strArray[i].equals("")){
-                  result13Array[rowCounter] = "tomt"; 
-              }
-              else{
-                  result13Array[rowCounter] = "Ö";
-              }
-          }
-          */
-          
-          rowCounter = -1;
           
           for ( int i = 0 ; i < resultFlagArray.length ; i+=3){
               rowCounter ++;
@@ -258,20 +247,13 @@ public class ResultRowListener {
               }
           }
           
-          System.out.println("Result:");
+          //System.out.println("Result:");
           
           for(int y = 0 ; y < result13Array.length ; y++){
-              System.out.println("Row: " + y + ", sign: " + result13Array[y] );
+              //System.out.println("Row: " + y + ", sign: " + result13Array[y] );
           }
           
-          /*
-          for(int y = 0 ; y < resultFlagArray.length ; y++){
-              if (resultFlagArray[y] == true){
-                  System.out.println("FlagTrue-index: " + y  );
-              }
-          }
-          */
-          
+         
       }
     
 }

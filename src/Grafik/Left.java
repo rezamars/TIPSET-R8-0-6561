@@ -7,6 +7,7 @@ package Grafik;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -18,6 +19,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Screen;
 
 /**
  *
@@ -43,6 +45,8 @@ public class Left extends VBox{
     //private HBox[] hbox1X2Array = new HBox[13];
     private HBox[] hboxLabelArray = new HBox[13];
     private boolean flagOf5MGs = false;
+    
+    private int[] chosenMGIndexes = new int[5];
     
     
     public Left(){
@@ -70,21 +74,7 @@ public class Left extends VBox{
 
         }
        
-        /*
-        for(int z = 0 ; z < hboxNumMGArray.length ; z++){
-            hboxNumMGArray[z] = new HBox();
-            hboxNumMGArray[z].setSpacing(25);
-            hboxNumMGArray[z].setFillHeight(true); 
-            hboxNumMGArray[z].setPrefSize(50, 50);
-            hboxNumMGArray[z].autosize();
-            hboxNumMGArray[z].setAlignment(Pos.CENTER);
-
-            hbox1X2Array[z] = new HBox();
-            hbox1X2Array[z].setSpacing(3);
-            hbox1X2Array[z].setFillHeight(true);          
-            hbox1X2Array[z].setAlignment(Pos.CENTER);
-        }
-        */
+       
         
         Font labelFont ;
         labelFont = Font.font("Arial", FontWeight.BOLD, 20);
@@ -118,18 +108,22 @@ public class Left extends VBox{
             return;
         }
         
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        double width = primaryScreenBounds.getWidth();
+        double height = primaryScreenBounds.getHeight();
+        //System.out.println("width: " + width + ", height: " + height);
         
         imageView1 = new ImageView(MGimage1);
-        imageView1.setFitHeight(30);
-        imageView1.setFitWidth(30);
+        imageView1.setFitHeight(height/25);
+        imageView1.setFitWidth(width/55);
         imageView2 = new ImageView(MGimage2);
-        imageView2.setFitHeight(30);
-        imageView2.setFitWidth(30);
+        imageView2.setFitHeight(height/25);
+        imageView2.setFitWidth(width/55);
         
         for(int w = 0 ; w < MGArray.length ; w++){
             imageViewArray[w] = new ImageView(MGimage1);
-            imageViewArray[w].setFitHeight(30);
-            imageViewArray[w].setFitWidth(30);
+            imageViewArray[w].setFitHeight(height/25);
+            imageViewArray[w].setFitWidth(width/55);
             
             MGArray[w] = new Label();
             MGArray[w].setGraphic(imageViewArray[w]);
@@ -172,6 +166,10 @@ public class Left extends VBox{
             
         }
         
+        for (int x = 0 ; x < chosenMGIndexes.length ; x++){
+            chosenMGIndexes[x] = -1;
+        }
+        
         this.getChildren().addAll(hboxLabelArray);
         
     }
@@ -186,6 +184,10 @@ public class Left extends VBox{
     
     public boolean get5MGsFlag(){
         return flagOf5MGs;
+    }
+    
+    public int[] getChosenMGIndexes(){
+        return chosenMGIndexes;
     }
     
     public ImageView getImageView1(){
