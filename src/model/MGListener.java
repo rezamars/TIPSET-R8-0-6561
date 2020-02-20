@@ -42,7 +42,7 @@ public class MGListener    {
     private boolean result13Flag;
     
     
-    public MGListener(Label[] MGA, Left left1, Center center1, Right right1){
+    public MGListener(Label[] MGA, Left left1, Center center1, Right right1, boolean flag13){
         
         for (int a = 0 ; a < mgFlagArray.length ; a++){
             mgFlagArray[a] = false;
@@ -58,7 +58,7 @@ public class MGListener    {
         this.imageViewArray = left1.getImageViewArray();
         this.flagOf5MGs = left1.get5MGsFlag();
         this.chosenMGIndexes = left1.getChosenMGIndexes();
-        this.result13Flag = center.getResult13Flag();
+        this.result13Flag = flag13;
         
         
         loadLabelImage();
@@ -84,7 +84,7 @@ public class MGListener    {
                     
                     MGLabelFlagSetter();
                     updateLabelImage();
-                    updateEnableCountCButton();
+                    updateEnableCountCButton(this.result13Flag);
                     
                 });
         }
@@ -189,10 +189,11 @@ public class MGListener    {
         
     }
 
-    public void updateEnableCountCButton(){
+    public void updateEnableCountCButton(boolean flag13){
         
-        System.out.println("result13flag= " + Controller.flag13);
-        if ((flagOf5MGs == true) && (Controller.flag13 == true)){
+        this.result13Flag = flag13;
+        System.out.println("in update enable, result13flag= " + this.result13Flag);
+        if ((flagOf5MGs == true) && (this.result13Flag == true)){
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             right.getCountButton().setDisable(false);
         }
@@ -200,6 +201,29 @@ public class MGListener    {
             right.getCountButton().setDisable(true);
         }
         
+    }
+    
+    public boolean[] getMgFlagArray(){
+        return this.mgFlagArray;
+    }
+ 
+    public void resetMGs(){
+        
+        for(int p = 0 ; p < mgFlagArray.length ; p++){
+            mgFlagArray[p] = false;
+        }
+        
+        for(int w = 0 ; w < MGArray.length ; w++){
+            imageViewArray[w].setImage(MGimage1);
+            MGArray[w].setGraphic(imageViewArray[w]);
+            MGArray[w].setDisable(false);
+        }
+        
+        for(int q = 0 ; q < chosenMGIndexes.length ; q++){
+            chosenMGIndexes[q] = -1;
+        }
+        
+        numberOfMGs = 0;
     }
     
 }

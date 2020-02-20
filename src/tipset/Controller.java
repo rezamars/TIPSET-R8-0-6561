@@ -14,6 +14,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Label;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import model.ClearButtonListener;
 import model.CountButtonListener;
 import model.MGListener;
 import model.ReadFile;
@@ -34,11 +35,14 @@ public class Controller extends Application {
     private Label[] MGArray ;
     private MGListener MGlistener;
     private Label[] result1X2Array;
-    private ResultRowListener resultListener;
+    private ResultRowListener resultRowListener;
     private CountButtonListener countButtonListener;
     
     private ResultCounter resultCounter;
-    public static boolean flag13 = false;
+    private boolean flag13 = false;
+    
+    private ClearButtonListener clearButtonListener;
+    
     
     @Override
     public void start(Stage primaryStage) {
@@ -54,16 +58,19 @@ public class Controller extends Application {
         this.MGArray = left.getMGArray();
         this.result1X2Array = center.getResultArray();
         
-        MGlistener = new MGListener(MGArray, left, center, right);
+        MGlistener = new MGListener(MGArray, left, center, right, flag13);
         MGlistener.addMGLabelListener();
         
-        resultListener = new ResultRowListener(result1X2Array, center, MGlistener);
-        resultListener.addResultLabelListener();
+        resultRowListener = new ResultRowListener(result1X2Array, center, MGlistener, flag13);
+        resultRowListener.addResultLabelListener();
         
         resultCounter = new ResultCounter(left,center,right);
         
         countButtonListener = new CountButtonListener(right, resultCounter);
         countButtonListener.addCountButtonListener();
+        
+        clearButtonListener = new ClearButtonListener(right, MGlistener, flag13, resultRowListener);
+        clearButtonListener.addClearButtonListener();
         
         
         View v = new View(primaryStage, top, left, center, right);

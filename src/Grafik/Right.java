@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -34,7 +35,11 @@ public class Right extends VBox{
     
     private HBox spaceHbox1 = new HBox();
     private HBox spaceHbox2 = new HBox();
-    private Label numberOfRightsLabel = new Label();
+    private TextArea numberOfRightsTextArea = new TextArea();
+    
+    private HBox spaceHbox3 = new HBox();
+    private HBox spaceHbox4 = new HBox();
+    private Button clearButton = new Button("  Återställ  ");
     
     public Right(){
         
@@ -63,25 +68,33 @@ public class Right extends VBox{
         Font labelFont ;
         labelFont = Font.font("Arial", FontWeight.BOLD, 20);
         
-        numberOfRightsLabel.setFont(labelFont);
-        numberOfRightsLabel.setText("");
-        numberOfRightsLabel.setTextAlignment(TextAlignment.CENTER);
-        numberOfRightsLabel.setWrapText(true);
+        //numberOfRightsLabel.setFont(labelFont);
+        numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: \n12 rätt:\n11 rätt:\n10 rätt:");
+        //numberOfRightsLabel.setTextAlignment(TextAlignment.CENTER);
+        numberOfRightsTextArea.setWrapText(true);
         
         BackgroundFill background_fill = new BackgroundFill(Color.YELLOW,  CornerRadii.EMPTY, Insets.EMPTY); 
         Background background = new Background(background_fill);
-        numberOfRightsLabel.setBackground(background);
+        numberOfRightsTextArea.setBackground(background);
         
-        numberOfRightsLabel.setStyle("-fx-text-fill: red;");
-        numberOfRightsLabel.setStyle("-fx-border-color: black;");
+        numberOfRightsTextArea.setStyle("-fx-text-fill: red;");
+        numberOfRightsTextArea.setStyle("-fx-border-color: black;");
+        numberOfRightsTextArea.setPrefColumnCount(1);
+        numberOfRightsTextArea.setPrefRowCount(5);
+        numberOfRightsTextArea.setEditable(false);
         
         countButton.setDisable(true);
         
         this.getChildren().add(countButton);
         this.getChildren().add(spaceHbox2);
-        this.getChildren().add(numberOfRightsLabel);
+        this.getChildren().add(numberOfRightsTextArea);
            
         ReadTables();
+        
+        spaceHbox3.setPadding(new Insets(65, 10, 10, (width/8)));
+        this.getChildren().add(spaceHbox3);
+        this.getChildren().add(clearButton);
+        
     }
     
     
@@ -97,6 +110,10 @@ public class Right extends VBox{
    
     public Button getCountButton(){
         return this.countButton;
+    }
+    
+    public Button getClearButton(){
+        return this.clearButton;
     }
     
 }

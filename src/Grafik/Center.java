@@ -39,7 +39,7 @@ public class Center extends VBox{
     private Image imageBlank;
     private String imageBlankPath = "blank.jpg";
     
-    private boolean result13Flag = false;
+    //private boolean result13Flag = false;
     private ImageView[] imageViewArray = new ImageView[39];
     
     private String[] result13Array = new String[13];
@@ -189,8 +189,8 @@ public class Center extends VBox{
         return imageViewArray;
     }
     
-    public boolean getResult13Flag(){
-        return result13Flag;
-    }
+    //public boolean getResult13Flag(){
+        //return result13Flag;
+    //}
     
 }

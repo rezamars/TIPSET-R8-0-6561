@@ -49,14 +49,15 @@ public class ResultRowListener {
     private MGListener MGListener;
     
     
-    public ResultRowListener(Label[] resultArray, Center center1, MGListener MGListener1){
+    public ResultRowListener(Label[] resultArray, Center center1, MGListener MGListener1, boolean flag13){
         
         this.result1X2Array = resultArray;
         this.center = center1;
         this.imageViewArray = center1.getImageViewArray();
-        this.result13Flag = center1.getResult13Flag();
+        //this.result13Flag = center1.getResult13Flag();
         this.result13Array = center1.getResult13Array();
         this.MGListener = MGListener1;
+        this.result13Flag = flag13;
         
         for (int a = 0 ; a < resultFlagArray.length ; a++){
             resultFlagArray[a] = false;
@@ -175,7 +176,7 @@ public class ResultRowListener {
             result1X2Array[disableIndexes[1]].setDisable(false);
             
             checkedResults--;
-            Controller.flag13 = false;
+            this.result13Flag  = false;
         }
         else if (resultFlagArray[resultLabellIndex] == true){
             
@@ -213,17 +214,17 @@ public class ResultRowListener {
                 result13Flag = true;
                 System.out.println("In rrli,result13flag= " + result13Flag);
                 countRowNumber();
-                Controller.flag13 = true;
+                //this.result13Flag = true;
             }
             else{
-                result13Flag = false;
-                Controller.flag13 = false;
+                //result13Flag = false;
+                //this.result13Flag  = false;
             }
-            this.MGListener.updateEnableCountCButton();
+            //this.MGListener.updateEnableCountCButton();
             System.out.println("NUmber of checked: " + checkedResults);
         }
             
-        this.MGListener.updateEnableCountCButton();
+        this.MGListener.updateEnableCountCButton(result13Flag);
     }
       
       public void countRowNumber(){
@@ -256,4 +257,31 @@ public class ResultRowListener {
          
       }
     
+      public boolean[] getResultFlags(){
+          
+          return this.resultFlagArray;
+          
+      }
+      
+      public void resetChosenResults(){
+        
+        for(int p = 0 ; p < resultFlagArray.length ; p++){
+            resultFlagArray[p] = false;
+        }
+        
+        for(int w = 0 ; w < strArray.length ; w++){
+            imageViewArray[w].setImage(imageBlank);
+            result1X2Array[w].setGraphic(imageViewArray[w]);
+            result1X2Array[w].setDisable(false);
+        }
+        
+        for(int q = 0 ; q < result13Array.length ; q++){
+            result13Array[q] = "";
+        }
+        
+        checkedResults = 0;
+        result13Flag = false;
+        this.MGListener.updateEnableCountCButton(result13Flag);
+    }
+      
 }
