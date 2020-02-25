@@ -120,8 +120,9 @@ public class MGListener    {
     
     public void updateLabelImage(){
         
-        
-        if (mgFlagArray[MGIndex] == false){
+        if(MGIndex != -1){
+            
+            if (mgFlagArray[MGIndex] == false){
                 
             if (numberOfMGs == 5){
                 for (int y = 0; y < MGArray.length ; y++){
@@ -142,13 +143,17 @@ public class MGListener    {
             }
                 
             
+            }
+            else if (mgFlagArray[MGIndex] == true){
+
+                imageViewArray[MGIndex].setImage(MGimage2);
+                MGArray[MGIndex].setGraphic(imageViewArray[MGIndex]);
+                numberOfMGs++;
+            }
+            
         }
-        else if (mgFlagArray[MGIndex] == true){
-                
-            imageViewArray[MGIndex].setImage(MGimage2);
-            MGArray[MGIndex].setGraphic(imageViewArray[MGIndex]);
-            numberOfMGs++;
-        }
+        
+        
             
             
         if (numberOfMGs > 4){

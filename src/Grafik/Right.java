@@ -77,19 +77,31 @@ public class Right extends VBox{
         Background background = new Background(background_fill);
         numberOfRightsTextArea.setBackground(background);
         
-        numberOfRightsTextArea.setStyle("-fx-text-fill: red;");
-        numberOfRightsTextArea.setStyle("-fx-border-color: black;");
+        numberOfRightsTextArea.setStyle("-fx-text-fill: red; -fx-border-color: black;");
         numberOfRightsTextArea.setPrefColumnCount(1);
         numberOfRightsTextArea.setPrefRowCount(5);
         numberOfRightsTextArea.setEditable(false);
+        Font textAreaFont ;
+        textAreaFont = Font.font("", FontWeight.BOLD, 15);
+        numberOfRightsTextArea.setFont(textAreaFont);
         
         countButton.setDisable(true);
+        countButton.setStyle("-fx-text-fill: blue;");
+        Font countButtonFont ;
+        countButtonFont = Font.font("Arial", FontWeight.BOLD, 15);
+        countButton.setFont(countButtonFont);
         
         this.getChildren().add(countButton);
         this.getChildren().add(spaceHbox2);
         this.getChildren().add(numberOfRightsTextArea);
            
         ReadTables();
+        
+        
+        Font clearButtonFont ;
+        clearButtonFont = Font.font("Arial", FontWeight.BOLD, 15);
+        clearButton.setFont(clearButtonFont);
+        clearButton.setStyle("-fx-text-fill: purple;");
         
         spaceHbox3.setPadding(new Insets(65, 10, 10, (width/8)));
         this.getChildren().add(spaceHbox3);
@@ -114,6 +126,10 @@ public class Right extends VBox{
     
     public Button getClearButton(){
         return this.clearButton;
+    }
+    
+    public TextArea getTextArea(){
+        return this.numberOfRightsTextArea;
     }
     
 }

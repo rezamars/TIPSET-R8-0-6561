@@ -9,6 +9,7 @@ import Grafik.Center;
 import Grafik.Right;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 /**
  *
@@ -23,6 +24,7 @@ public class ClearButtonListener {
     private boolean result13Flag;
     private ResultRowListener resultRowListener;
     private boolean[] resultFlagArray;
+    private TextArea numberOfRightsTextArea;
     
     
     public ClearButtonListener(Right right1, MGListener MGlistener1, boolean flag13, ResultRowListener resultRowListener1){
@@ -34,6 +36,7 @@ public class ClearButtonListener {
         this.result13Flag = flag13;
         this.resultRowListener = resultRowListener1;
         this.resultFlagArray = resultRowListener.getResultFlags();
+        this.numberOfRightsTextArea = right.getTextArea();
         
     }
     
@@ -50,6 +53,7 @@ public class ClearButtonListener {
             }
             
             resultRowListener.resetChosenResults();
+            numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: \n12 rätt:\n11 rätt:\n10 rätt:");
             
         });
         
