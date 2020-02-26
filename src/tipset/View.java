@@ -17,6 +17,7 @@ import javafx.stage.Stage;
  *
  * @author Reza
  */
+//this class creates the stage and sets the layout and adds the 4 layout objects
 public class View {
     
     private BorderPane borderPane = new BorderPane();
@@ -28,11 +29,13 @@ public class View {
     
     public View(Stage primaryStage, Top top1, Left left1, Center center1, Right right1){
         
+        //referring to grafical objects
         this.top = top1;
         this.left= left1;
         this.center = center1;
         this.right = right1;
         
+        //setting the grafic-objects to layout
         borderPane.setTop(top);
         borderPane.setLeft(left);
         borderPane.setCenter(center);

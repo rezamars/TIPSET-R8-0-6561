@@ -9,12 +9,12 @@ import Grafik.Center;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import tipset.Controller;
 
 /**
  *
  * @author Reza
  */
+//handles the listener to the results that the user marks
 public class ResultRowListener {
     
     
@@ -44,9 +44,9 @@ public class ResultRowListener {
     
     private String[] result13Array;
     private int rowIndex = -1;
-    private int numberOfResChecked = 0;
     
     private MGListener MGListener;
+    private int numberOfResChecked = 0;
     
     
     public ResultRowListener(Label[] resultArray, Center center1, MGListener MGListener1, boolean flag13){
@@ -54,7 +54,6 @@ public class ResultRowListener {
         this.result1X2Array = resultArray;
         this.center = center1;
         this.imageViewArray = center1.getImageViewArray();
-        //this.result13Flag = center1.getResult13Flag();
         this.result13Array = center1.getResult13Array();
         this.MGListener = MGListener1;
         this.result13Flag = flag13;
@@ -74,7 +73,9 @@ public class ResultRowListener {
         
     }
     
-    
+    //adds listener for the result input of the user
+    //then, calls the flagsetter method, 
+    //and updates the images for clicked, depending on 1X2
     public void addResultLabelListener(){
 	        
         for(int x = 0 ; x<result1X2Array.length ; x++){
@@ -107,8 +108,6 @@ public class ResultRowListener {
                     }
                     
                    
-                    
-                    //System.out.println("Click på nr: " + resultLabellIndex);
                     ResultLabelFlagSetter();
                     updateLabelImage();
                     
@@ -116,7 +115,7 @@ public class ResultRowListener {
         }
     }      
     
-    
+    //loads the images for the result-input
     public void loadLabelImages(){
         
         try {
@@ -134,25 +133,26 @@ public class ResultRowListener {
         
     }
     
+    //sets the flags for the result-part, specifying which of the results the user has chosen and not chosen
     public void ResultLabelFlagSetter(){
         
         if (resultFlagArray[resultLabellIndex] == false){
             resultFlagArray[resultLabellIndex] = true;
-                //System.out.println("ResultArray!: " + resultLabellIndex + ", now true!");
                 numberOfResChecked++;
             }
         else if(resultFlagArray[resultLabellIndex] == true){
             resultFlagArray[resultLabellIndex] = false;
-            //System.out.println("ResultArray!: " + resultLabellIndex + ", now false");
             numberOfResChecked--;
         }
         
     }
     
+    //changing the result-grafics depending on chosen and unchosen 1,X,2
       public void updateLabelImage(){
         
         if (resultFlagArray[resultLabellIndex] == false){
               
+            //
             if(strArrayTypeOfImage == "1"){
                 disableIndexes[0] = resultLabellIndex + 1;
                 disableIndexes[1] = resultLabellIndex + 2;
@@ -207,26 +207,24 @@ public class ResultRowListener {
             result1X2Array[disableIndexes[1]].setDisable(true);
             checkedResults++;   
             
-            //System.out.println("Row: " + rowIndex + ", Type: " + strArrayTypeOfImage );
-            
+            //when the user checks 13 results the 13Flag sets to true 
+            //whihch makes it possible to click the count-button
             if(checkedResults == 13){
-                System.out.println("Number of checked: " + checkedResults);
+                
                 result13Flag = true;
-                System.out.println("In rrli,result13flag= " + result13Flag);
+                
                 countRowNumber();
-                //this.result13Flag = true;
             }
             else{
-                //result13Flag = false;
-                //this.result13Flag  = false;
+                
             }
-            //this.MGListener.updateEnableCountCButton();
-            System.out.println("NUmber of checked: " + checkedResults);
+            
         }
             
         this.MGListener.updateEnableCountCButton(result13Flag);
     }
       
+      //settting the result-mark depending on 1, X, or 2
       public void countRowNumber(){
           
           int rowCounter = -1;
@@ -248,13 +246,7 @@ public class ResultRowListener {
               }
           }
           
-          //System.out.println("Result:");
           
-          for(int y = 0 ; y < result13Array.length ; y++){
-              //System.out.println("Row: " + y + ", sign: " + result13Array[y] );
-          }
-          
-         
       }
     
       public boolean[] getResultFlags(){
@@ -263,6 +255,7 @@ public class ResultRowListener {
           
       }
       
+      //resetting the flags, results, grafics of resultarray and disabling the count-button
       public void resetChosenResults(){
         
         for(int p = 0 ; p < resultFlagArray.length ; p++){

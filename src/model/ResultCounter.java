@@ -8,13 +8,13 @@ package model;
 import Grafik.Center;
 import Grafik.Left;
 import Grafik.Right;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 /**
  *
  * @author Reza
  */
+//handles counting the number of rights, depending on MGs chosen, result
 public class ResultCounter {
     
     private int[] chosenMGIndexes;
@@ -46,12 +46,9 @@ public class ResultCounter {
         
         specify8unMGIndexes();
         
-        for(int x = 0 ; x < 5; x++){
-            //System.out.println("chosen index = " + chosenMGIndexes[x]);
-        }
-        
     }
     
+    //fills the 8unmarkedMGs-array with indexes that the user has chosen as not MG
     public void specify8unMGIndexes(){
         
         for (int x = 0 ; x < the8unMGmarkedIndexes.length ; x++){
@@ -67,11 +64,9 @@ public class ResultCounter {
                 if(indexOf5 < 5){
                     
                     if(chosenMGIndexes[indexOf5] == i){
-                        //System.out.println("in if, i= " + i);
                         indexOf5++;
                     }
                     else{
-                        //System.out.println("in else, i= " + i);
                         the8unMGmarkedIndexes[indexOf8] = i;
                         indexOf8++;
                     }
@@ -84,14 +79,10 @@ public class ResultCounter {
                 
             }
         
-        
-        for(int x = 0 ; x < 8; x++){
-            System.out.println("Unmarked indexes = " + the8unMGmarkedIndexes[x]);
-        }
-        
         countTheRights();
     }
     
+    //compares the 8 rows of the user with the default tables for R8-0-27 read from file
     private void countTheRights(){
         
         amountOf13 = 0;
@@ -102,7 +93,6 @@ public class ResultCounter {
         for(int x = 0 ; x < eightResultsMarks.length ; x++){
             
             eightResultsMarks[x] = result13Array[the8unMGmarkedIndexes[x]];
-            System.out.println("8res: " + eightResultsMarks[x]);
         }
         
         int numberOfRight = 0 ;
@@ -116,8 +106,10 @@ public class ResultCounter {
                 }
             }
             
+            //adds the 5 MGs that are 1X2-marked from the user
             numberOfRight +=5;
             
+            //adds number of rights to the 4 levels of won
             if (numberOfRight == 13){
                 amountOf13++;
             }
@@ -137,6 +129,7 @@ public class ResultCounter {
         
     }
     
+    //fills the ammount of rights in textarea
     public void setRightsInTextArea(){
         
         numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: " + amountOf13 + "\n12 rätt: " + amountOf12 + 

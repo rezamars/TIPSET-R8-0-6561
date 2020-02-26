@@ -25,6 +25,7 @@ import javafx.stage.Screen;
  *
  * @author Reza
  */
+//the Left-object of the borderpane
 public class Left extends VBox{
     
     private Label headingLabel = new Label("Mitt system, (5 MG)");
@@ -41,8 +42,6 @@ public class Left extends VBox{
     private ImageView imageView2;
     
     private HBox spaceHbox = new HBox();
-    //private HBox[] hboxNumMGArray = new HBox[13];
-    //private HBox[] hbox1X2Array = new HBox[13];
     private HBox[] hboxLabelArray = new HBox[13];
     private boolean flagOf5MGs = false;
     
@@ -61,10 +60,13 @@ public class Left extends VBox{
         headingLabel.setTextFill(Color.BLUE);
         
         this.getChildren().add(headingLabel);
+        
+        //a HBox for filling up space
         spaceHbox = new HBox();
         spaceHbox.setPadding(new Insets(10, 10, 10, 100));
         this.getChildren().add(spaceHbox);
         
+        //creating instances of HBox-array and setting properties
         for(int z = 0 ; z < hboxLabelArray.length ; z++){
             hboxLabelArray[z] = new HBox();
             hboxLabelArray[z].setSpacing(25);
@@ -79,6 +81,7 @@ public class Left extends VBox{
         Font labelFont ;
         labelFont = Font.font("Arial", FontWeight.BOLD, 20);
         
+        //objects of rownumbers, color, text, font
         for(int x = 0 ; x < rowNumberlabelArray.length ; x++){
             rowNumberlabelArray[x] = new Label();
             BackgroundFill background_fill = new BackgroundFill(Color.LIGHTYELLOW,  CornerRadii.EMPTY, Insets.EMPTY); 
@@ -96,7 +99,7 @@ public class Left extends VBox{
             rowNumberlabelArray[x].setAlignment(Pos.CENTER);
         }
         
-        
+        //loading images for result-part
         try {
             
             MGimage1 = new Image(MGimage1Path);
@@ -108,11 +111,12 @@ public class Left extends VBox{
             return;
         }
         
+        //get screenresolution to set procentage of screen later
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         double width = primaryScreenBounds.getWidth();
         double height = primaryScreenBounds.getHeight();
-        //System.out.println("width: " + width + ", height: " + height);
         
+        //setting properties of image-views
         imageView1 = new ImageView(MGimage1);
         imageView1.setFitHeight(height/25);
         imageView1.setFitWidth(width/55);
@@ -120,6 +124,7 @@ public class Left extends VBox{
         imageView2.setFitHeight(height/25);
         imageView2.setFitWidth(width/55);
         
+        //setting properties of image-views and setting the images to the grafics of the MGArray
         for(int w = 0 ; w < MGArray.length ; w++){
             imageViewArray[w] = new ImageView(MGimage1);
             imageViewArray[w].setFitHeight(height/25);
@@ -131,7 +136,7 @@ public class Left extends VBox{
         }
         
         
-        
+        //setting background, font and text of the 1X2-labels
         for(int q = 0 ; q < arrayLabel1X2.length ; q++){
             arrayLabel1X2[q] = new Label();
             BackgroundFill background_fill = new BackgroundFill(Color.LIGHTGREEN,  CornerRadii.EMPTY, Insets.EMPTY); 
@@ -148,6 +153,7 @@ public class Left extends VBox{
         int hboxIndex = 0;
         int array1X2Number = 0;
         
+        //adding rowNumbers, MG-pictures and 1X2-labels to the screen (stage)
         for (int addIndex = 0 ; addIndex < totalLabels ; addIndex++ ){
             if ( squareNumber == 0){
                 hboxLabelArray[hboxIndex].getChildren().add(rowNumberlabelArray[hboxIndex]);
@@ -166,6 +172,8 @@ public class Left extends VBox{
             
         }
         
+        //filling the chosenIndex-array of -1 (unacceptable number), to know if and when 
+        //the array contains unaccepted number
         for (int x = 0 ; x < chosenMGIndexes.length ; x++){
             chosenMGIndexes[x] = -1;
         }

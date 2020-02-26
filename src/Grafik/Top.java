@@ -19,6 +19,7 @@ import javafx.scene.text.FontWeight;
  *
  * @author Reza
  */
+//the top-object of the borderpane
 public class Top extends HBox{
     
     private Label tipsLabel = new Label();
@@ -34,6 +35,7 @@ public class Top extends HBox{
         this.setPadding(new Insets(10, 10, 10, 10));  
         this.setSpacing(30);
         
+        //load image
         try {
             
             image = new Image(imagePath);
@@ -44,7 +46,7 @@ public class Top extends HBox{
             return;
         }
         
-        
+        //set the image to the grafic
         tipsLabel.setGraphic(new ImageView(image));
         
         Font font ;

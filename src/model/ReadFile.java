@@ -9,10 +9,12 @@ import Grafik.Right;
 import java.io.File;
 import java.util.Scanner;
 
+
 /**
  *
  * @author Reza
  */
+//handles reading default tables from textfile
 public class ReadFile {
     
     private Scanner scanner;
@@ -27,6 +29,7 @@ public class ReadFile {
         
         this.R8_0_27_Tables = right1.getSystemTables();
         
+        //filling the tables-array with ""
         for(int i = 0 ; i < 27 ; i++){
             for(int k = 0 ; k < 8 ; k++){
                  R8_0_27_Tables[i][k] = "";
@@ -36,11 +39,13 @@ public class ReadFile {
         
     }
     
+    //reads the default tables from file loaded from sv-spel
     public String[][] readFileFromTextFile(){
         
         file = new File("files\\R8-0-27.txt");
         
         try{
+                //starting the scannner
 		scanner = new Scanner(file);
                 System.out.println("Filen öppnades!");
                 
@@ -49,12 +54,12 @@ public class ReadFile {
                     
                     for(int i = 0 ; i < 27 ; i++){
                         rowNumber++;
-                        //System.out.println("Under i.");
+                        
                         for(int k = 0 ; k < 8 ; k++){
-                            //System.out.println("Under k.");
+                            
                             signNumber++;
                             s = scanner.next();
-                            //System.out.println("s=" + s);
+                            
                             R8_0_27_Tables[i][k] = s;
                             
                             
@@ -71,31 +76,21 @@ public class ReadFile {
                     
                 }
                 
+                //filling the tables-array
 		for(int i = 0 ; i < 27 ; i++){
                     for(int k = 0 ; k < 8 ; k++){
                         if(R8_0_27_Tables[i][k].equalsIgnoreCase("1") || R8_0_27_Tables[i][k].equalsIgnoreCase("X") || 
                                 R8_0_27_Tables[i][k].equalsIgnoreCase("2")){
-                            //System.out.println("result, i= " + i + ", k= "+ R8_0_27_Tables[i][k]);
+                            
                         }
                         else{
-                            //System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                            
                         }
                     }
             
                 }
+               
                 
-                for(int x = 0 ; x < 13 ; x++){
-                    
-                    //System.out.println("result, " + x + ": "+ R8_0_27_Tables[25][x]);
-                }
-                
-                /*
-		while(scanner.hasNext()){
-			
-                    s = scanner.next();
-			
-		}
-                */
                 //close the scanner when finished
 		scanner.close();
 		System.out.println("Filen är stängd.");

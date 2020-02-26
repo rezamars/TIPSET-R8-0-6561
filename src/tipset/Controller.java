@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import model.ClearButtonListener;
 import model.CountButtonListener;
 import model.MGListener;
-import model.ReadFile;
 import model.ResultCounter;
 import model.ResultRowListener;
 
@@ -25,6 +24,7 @@ import model.ResultRowListener;
  *
  * @author Reza
  */
+//this class is controller of the program, it contains instance variables and the main-method
 public class Controller extends Application {
     
     
@@ -47,17 +47,20 @@ public class Controller extends Application {
     @Override
     public void start(Stage primaryStage) {
         
+        //get screenresolution
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         
-        //set Stage boundaries to visible bounds of the main screen
+        //set screen-size, procentage of screenresolution
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());
         primaryStage.setWidth((primaryScreenBounds.getWidth())/1.4);
         primaryStage.setHeight((primaryScreenBounds.getHeight())/1.2);
         
+        //referring to arrays
         this.MGArray = left.getMGArray();
         this.result1X2Array = center.getResultArray();
         
+        //creating new instances of various objects
         MGlistener = new MGListener(MGArray, left, center, right, flag13);
         MGlistener.addMGLabelListener();
         

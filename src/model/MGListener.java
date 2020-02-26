@@ -11,12 +11,12 @@ import Grafik.Right;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import tipset.Controller;
 
 /**
  *
  * @author Reza
  */
+//handles the listener to the selected MGs that the user chooses
 public class MGListener    {
 
     private Label[] MGArray ;
@@ -66,7 +66,7 @@ public class MGListener    {
     }
     
     
-    
+    //listener for clicking on MGs
     public void addMGLabelListener(){
 	        
         for(int x = 0 ; x<MGArray.length ; x++){
@@ -90,6 +90,7 @@ public class MGListener    {
         }
     }       
     
+    //loads images
     public void loadLabelImage(){
         
         try {
@@ -105,19 +106,19 @@ public class MGListener    {
         
     }
 
+    //setting the flags for chosen and unchosen MGs
     public void MGLabelFlagSetter(){
         
         if (mgFlagArray[MGIndex] == false){
             mgFlagArray[MGIndex] = true;
-                //System.out.println("MGArray!: " + MGIndex + ", now true!");
             }
         else if(mgFlagArray[MGIndex] == true){
             mgFlagArray[MGIndex] = false;
-            //System.out.println("MGArray!: " + MGIndex + ", now false");
         }
         
     }
     
+    //changing label images, counting number of MGs chosen
     public void updateLabelImage(){
         
         if(MGIndex != -1){
@@ -179,27 +180,20 @@ public class MGListener    {
                 }
             }
             flagOf5MGs = true;
-            //System.out.println("flag of 5MGs: " + numberOfMGs);
-            /*
-            for(int x = 0 ; x < chosenMGIndexes.length ; x++){
-                System.out.println("chosen index = " + chosenMGIndexes[x]);
-            }
-            */
-            //updateEnableCountCButton();
+            
         }
         else{
             flagOf5MGs = false;
-            //System.out.println("number of MGs: " + numberOfMGs);
         }
         
     }
 
+    //enable and disable the count-button depending on numbers of MGs and result-input
     public void updateEnableCountCButton(boolean flag13){
         
         this.result13Flag = flag13;
-        System.out.println("in update enable, result13flag= " + this.result13Flag);
+        
         if ((flagOf5MGs == true) && (this.result13Flag == true)){
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             right.getCountButton().setDisable(false);
         }
         else{
@@ -212,6 +206,7 @@ public class MGListener    {
         return this.mgFlagArray;
     }
  
+    //resets the MGs and changes the grapics of the MGs
     public void resetMGs(){
         
         for(int p = 0 ; p < mgFlagArray.length ; p++){

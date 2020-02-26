@@ -12,12 +12,13 @@ import javafx.scene.control.Button;
  *
  * @author Reza
  */
+//takes care of the functionality that handles when and how to count the results
+//depending of which MGs and the result that the user inputs
 public class CountButtonListener {
     
     private Right right;
     private Button countButton;
     private ResultCounter resultCounter;
-    private boolean flagOf5MGs;
     
     
     public CountButtonListener(Right right1, ResultCounter resultCounter1){
@@ -28,13 +29,9 @@ public class CountButtonListener {
         
     }
     
+    //adds listener to the count-button, starts counting at click
     public void addCountButtonListener(){
         
-        /*
-        countButton.setOnMouseClicked(event -> {
-            resultCounter.startResultCounter();         
-        });
-        */
         countButton.setOnAction(e -> {
             resultCounter.startResultCounter();
         });

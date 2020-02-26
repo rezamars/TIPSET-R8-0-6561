@@ -9,7 +9,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -19,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Screen;
 import model.ReadFile;
 
@@ -27,6 +25,7 @@ import model.ReadFile;
  *
  * @author Reza
  */
+//the right-object of the borderpane
 public class Right extends VBox{
     
     public ReadFile readFile;
@@ -50,33 +49,32 @@ public class Right extends VBox{
         this.setPadding(new Insets(10, 10, 50, 100));  
         this.setSpacing(1);
         
+        //filling the tables-array with zero text
         for (int x = 0 ; x < 27 ; x++){
             for (int y = 0 ; y < 8 ; y++){
                 R8_0_27_Tables[x][y] = "";
             }
         }
         
+        //get screenresolution
         Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
         double width = primaryScreenBounds.getWidth();
-        //System.out.println("Width= " + width);
         
+        //HBox that acts to fill up space
         spaceHbox1.setPadding(new Insets(10, 10, 100, (width/8)));
         this.getChildren().add(spaceHbox1);
         
         spaceHbox2.setPadding(new Insets(10, 10, 10, (width/8)));
         
-        Font labelFont ;
-        labelFont = Font.font("Arial", FontWeight.BOLD, 20);
-        
-        //numberOfRightsLabel.setFont(labelFont);
         numberOfRightsTextArea.setText("Antal rätt:\n13 rätt: \n12 rätt:\n11 rätt:\n10 rätt:");
-        //numberOfRightsLabel.setTextAlignment(TextAlignment.CENTER);
         numberOfRightsTextArea.setWrapText(true);
         
+        //setting background of TextArea
         BackgroundFill background_fill = new BackgroundFill(Color.YELLOW,  CornerRadii.EMPTY, Insets.EMPTY); 
         Background background = new Background(background_fill);
         numberOfRightsTextArea.setBackground(background);
         
+        //setting properties of textarea
         numberOfRightsTextArea.setStyle("-fx-text-fill: red; -fx-border-color: black;");
         numberOfRightsTextArea.setPrefColumnCount(1);
         numberOfRightsTextArea.setPrefRowCount(5);
@@ -85,6 +83,7 @@ public class Right extends VBox{
         textAreaFont = Font.font("", FontWeight.BOLD, 15);
         numberOfRightsTextArea.setFont(textAreaFont);
         
+        //setting properties and font of countbutton
         countButton.setDisable(true);
         countButton.setStyle("-fx-text-fill: blue;");
         Font countButtonFont ;
@@ -97,7 +96,7 @@ public class Right extends VBox{
            
         ReadTables();
         
-        
+        //setting font and color of clearbutton
         Font clearButtonFont ;
         clearButtonFont = Font.font("Arial", FontWeight.BOLD, 15);
         clearButton.setFont(clearButtonFont);

@@ -5,16 +5,15 @@
  */
 package model;
 
-import Grafik.Center;
 import Grafik.Right;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 /**
  *
  * @author Reza
  */
+//handles resetting the Mgs and result and the textarea
 public class ClearButtonListener {
     
     private Right right;
@@ -40,6 +39,9 @@ public class ClearButtonListener {
         
     }
     
+    //add listener to clear-button
+    //at click: resetting the MCGs,flags, the results and the textarea
+    //and updating the grafics
     public void addClearButtonListener(){
         
         clearButton.setOnAction(e -> {
