@@ -7,6 +7,7 @@ package model;
 
 import Grafik.Right;
 import java.io.File;
+import java.io.InputStream;
 import java.util.Scanner;
 
 
@@ -42,11 +43,15 @@ public class ReadFile {
     //reads the default tables from file loaded from sv-spel
     public String[][] readFileFromTextFile(){
         
-        file = new File("files\\R8-0-27.txt");
+        
+        InputStream inputs;
+        inputs = getClass().getClassLoader().getResourceAsStream(
+                "R8-0-27.txt");
+        
         
         try{
                 //starting the scannner
-		scanner = new Scanner(file);
+		scanner = new Scanner(inputs);
                 System.out.println("Filen öppnades!");
                 
                 while(scanner.hasNext()){
